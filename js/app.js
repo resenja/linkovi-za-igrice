@@ -19,9 +19,8 @@ function addMessageToPage(message) {
     text = text.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
 text=urlify(text);
     const element = document.createElement('div');
-    element.innerHTML = `
-<label class="sent-message">${text}</label>
-`;
+element.classList.add("sent-message");
+    element.innerHTML = text;
     messagesElement.append(element);
 /*setTimeout(() => {
 element.scrollIntoView({behavior: 'smooth' });
