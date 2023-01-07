@@ -2,7 +2,7 @@
 font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 font-size: medium;
 }
-#div_iframe {
+#div-iframe {
   border-style: inset;
 border-color: grey;
 overflow: hidden;
@@ -10,7 +10,7 @@ height: 475px;
 width: 917px;
 }
 
-#frame {
+#battleships-frame {
   width: 200%;
 height: 1000%;
 margin-top: -125px;
