@@ -60,6 +60,10 @@ const { data, error } = await client
   .eq('name', gameName)
 }
 function onMouseoverSquare (square, piece) {
+  if ((game.turn() === 'w' && (piece.search(/^b/) !== -1 || board.orientation() !== 'white')) ||
+      (game.turn() === 'b' && (piece.search(/^w/) !== -1 || board.orientation() !== 'black'))) {
+    return
+  }
   // get list of possible moves for this square
   var moves = game.moves({
     square: square,
