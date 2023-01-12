@@ -127,7 +127,7 @@ async function removeGameFromPage(){
     .from('chess_games')
     .select("*")
     .eq('name',myGames[i].innerHTML)
-  if(chess.length == 0 || chess_games[0].players == 2)myGames[i].remove();
+  if(chess_games.length == 0 || chess_games[0].players == 2)myGames[i].remove();
   }
   }
 async function init(){
