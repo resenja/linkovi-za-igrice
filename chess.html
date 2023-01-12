@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/chessboard-1.0.0.min.css">
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/chessboard-1.0.0.min.js"></script>
+<script src="js/chess.js"></script>
+<script src="supabase-js"></script>
+<script>const client = supabase.createClient('https://qrpjxxnyavsvmdbypowt.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFycGp4eG55YXZzdm1kYnlwb3d0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzI1ODY5NjAsImV4cCI6MTk4ODE2Mjk2MH0.XAG8M4YLwVpGdA5H0qLa_SgFuUNuR9rldwe94DuPf3o');
+</script>
+</head>
+<body>
+    <div id="myBoard" style="width: 400px"></div>
+<div id="container">
+<label id="label-available-games">dostupne igre:</label>
+<div id="available-games"></div>
+<div id="bottom-menu">
+<div class="create-menu">
+<button id="play-white" onclick="chooseWhite()"><img src="img/chesspieces/wikipedia/wK.png" class="play-color"></button>
+<button id="play-random" onclick="chooseRandom()"><img src="img/chesspieces/wikipedia/wbK.png" class="play-color"></button>
+<button  id="play-black" onclick="chooseBlack()"><img src="img/chesspieces/wikipedia/bK.png" class="play-color"></button>
+</div>
+<div class="create-menu">
+<input id="game-name" placeholder="naziv partije">
+<button id="create-game">napravi igru</button>
+</div>
+</div>
+</div>
+<div id="game-over-screen">
+<button id="rematch">revanš</button>
+<br>
+<button id="go-back">nazad</button>
+</div>
+<script src="js/chessApp.js"></script>
+
+</body>
+</html>
