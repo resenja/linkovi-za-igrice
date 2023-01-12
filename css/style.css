@@ -52,20 +52,22 @@ overflow-y: auto;
 #message-div{
 height: 35px;
 width: 27%;
-text-align: center;
+display: flex;
+justify-content: center;
+height: 35px;
+width: 27%;
+display: flex;
+justify-content: center;
+align-items: center;
 position: fixed;
 left: 0;
 bottom: 0;
 border-right: solid gray 2px;
-z-index:2;
+z-index: 2;
 border-top: solid gray 2px;
 }
 #message-input {
 width: 90%;
-position: relative;
-top: 50%;
-transform: translateY(-50%);
-box-sizing: border-box;
 }
 .sent-message{
 border: solid 2px gray;
@@ -147,7 +149,7 @@ text-align: center;
 #rematch, #go-back{
 margin-bottom: 5px;
 width: 80px;
-height: 30px;
+
 position: relative;
 top: 165px;
 }

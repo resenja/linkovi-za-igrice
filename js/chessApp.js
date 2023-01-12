@@ -1,3 +1,4 @@
+
 let created = false;
 let gameName = "";
 let color = "";
@@ -55,12 +56,12 @@ promotion: 'q'
   $board.find('.square-' + squareToHighlight)
     .addClass('highlight-position')
 const { data, error } = await client
-  .from('games')
+  .from('chess_games')
   .update({from: move.from, to: move.to})
   .eq('name', gameName)
 }
 function onMouseoverSquare (square, piece) {
-  if ((game.turn() === 'w' && (piece.search(/^b/) !== -1 || board.orientation() !== 'white')) ||
+if ((game.turn() === 'w' && (piece.search(/^b/) !== -1 || board.orientation() !== 'white')) ||
       (game.turn() === 'b' && (piece.search(/^w/) !== -1 || board.orientation() !== 'black'))) {
     return
   }
@@ -110,7 +111,7 @@ board = Chessboard('myBoard', config)
 
 async function removeGame(){
 const { data, error } = await client
-  .from('games')
+  .from('chess_games')
   .delete()
   .eq('name', gameName)
 }
@@ -122,11 +123,11 @@ function addGameToPage(game) {
 async function removeGameFromPage(){
   let myGames = document.querySelectorAll('.game-request');
   for(let i=0;i<myGames.length;i++){
-    const { data: games, error } = await client
-    .from('games')
+    const { data: chess_games, error } = await client
+    .from('chess_games')
     .select("*")
     .eq('name',myGames[i].innerHTML)
-  if(games.length == 0 || games[0].players == 2)myGames[i].remove();
+  if(chess.length == 0 || chess_games[0].players == 2)myGames[i].remove();
   }
   }
 async function init(){
@@ -135,11 +136,11 @@ chooseRandom();
 if(Math.floor(Math.round(Math.random())) == 0)color="wr";
 else color="br";
 setTimeout(async function() {
-const { data: games, error } = await client
-  .from('games')
+const { data: chess_games, error } = await client
+  .from('chess_games')
   .select('*')
   .eq('players', 1)
-games.forEach(addGameToPage);
+chess_games.forEach(addGameToPage);
 }, 500);
 }
 init();
@@ -154,15 +155,15 @@ function containsSpecialChars(str) {
 document.querySelector('#create-game').onclick = async function(){
 gameName=document.querySelector('#game-name').value;
 if(gameName.length > 0 && gameName.length< 11 && !containsSpecialChars(gameName)){
-  const { data: games, err } = await client
-  .from('games')
+  const { data: chess_games, err } = await client
+  .from('chess_games')
   .select('name')
   .eq('name', gameName)
   alreadyExists=false;
-  games.forEach(exists);
+  chess_games.forEach(exists);
   if(!alreadyExists){
   const { data, error } = await client
-    .from('games')
+    .from('chess_games')
     .insert([
       {name: gameName, color: color },
     ])
@@ -174,7 +175,7 @@ document.querySelector('#create-game').disabled=true;
 async function joinGame(element){
 let name = element.innerHTML;
 const { data, error } = await client
-  .from('games')
+  .from('chess_games')
   .update({ players: 2 })
   .eq('name', name)
   if(created)removeGame();
@@ -182,7 +183,7 @@ const { data, error } = await client
 created=false;
 }
 
- onbeforeunload = async (event) => {
+onbeforeunload = async (event) => {
 if(created){
 removeGame();
 created=false;
@@ -193,10 +194,10 @@ document.querySelector('#game-name').value = '';
 }
       };
   client
-  .channel('public:games')
+  .channel('public:chess_games')
   .on(
     'postgres_changes',
-    { event: 'UPDATE', schema: 'public', table: 'games' },
+    { event: 'UPDATE', schema: 'public', table: 'chess_games' },
     (payload) => {
       if(payload.new.name == gameName){
 document.querySelector("#container").style.zIndex = -10;
@@ -237,10 +238,10 @@ document.querySelector("#game-over-screen").style.zIndex = 10;
     else removeGameFromPage();
 }
   )
-  .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'games' }, payload => {
+  .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'chess_games' }, payload => {
 if(payload.new.name != gameName)addGameToPage(payload.new);
   })
-  .on('postgres_changes', { event: 'DELETE', schema: 'public', table: 'games' }, async payload => {
+  .on('postgres_changes', { event: 'DELETE', schema: 'public', table: 'chess_games' }, async payload => {
     
   removeGameFromPage();
       })
@@ -270,7 +271,7 @@ if(color[0]=='w')color='b';
 else color='w';
 }
 const { error } = await client
-  .from('games')
+  .from('chess_games')
   .update({ name: gameName, color: color, from: '0'})
   .eq('name', gameName)
 }
