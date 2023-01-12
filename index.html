@@ -11,7 +11,7 @@
 <script>const client = supabase.createClient('https://qrpjxxnyavsvmdbypowt.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFycGp4eG55YXZzdm1kYnlwb3d0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzI1ODY5NjAsImV4cCI6MTk4ODE2Mjk2MH0.XAG8M4YLwVpGdA5H0qLa_SgFuUNuR9rldwe94DuPf3o');
 </script>
 </head>
-<body>
+<body style="overflow-x:hidden;">
 <div class="sidenav">
 <div id="messages">
 <div class="sent-message">
@@ -33,7 +33,7 @@
 <div id="message-div"><input id="message-input" onkeydown="send()"></input></div>
 <script src="js/app.js"></script>
 <div class="main">
-<div class="game" id="chess-embed"><iframe src="chess.html" frameborder="0" style="height:400px;width:1000%;">
+<div class="game" id="chess-embed"><iframe src="chess.html" frameborder="0" style="height:400px;width:100%;"></iframe>
 </div>
 
 <div class="game" id="battleships-embed">
