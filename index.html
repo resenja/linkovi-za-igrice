@@ -33,49 +33,12 @@
 <div id="message-div"><input id="message-input" onkeydown="send()"></input></div>
 <script src="js/app.js"></script>
 <div class="main">
-<div class="game" id="chess-embed"><iframe src="chess.html" frameborder="0" style="height:400px;width:100%;"></iframe>
+<div class="game" id="chess-embed">
+<iframe src="chess.html" frameborder="0" style="height:400px;width:100%;"></iframe>
 </div>
 
 <div class="game" id="battleships-embed">
-<div class="hider-button">
-  <button onclick="hideScreen()">sakrij svoj ekran</button>
-  <div id="hidden" class="hidden-content">
-<p>&nbsp;</p>
-  </div>
-</div>
-<script>
-function hideScreen(){
-document.querySelector("#hidden").classList.toggle("show");
-}
-</script>
-<div id="div-iframe"><iframe src="http://en.battleship-game.org/id79134913" scrolling="no" id="battleships-frame"></iframe></div>
-</div>
-
-<div class="game" id="solitaire_embed" style="width: 920px;height:auto;">
-  <style>
-    @media (max-width: 800px) {
-      #solitaire_embed > div {
-        padding-bottom: 90% !important; /* Change aspect ratio on mobile */
-      }
-    }
-    @media (max-width: 568px) {
-      #solitaire_embed > div {
-        padding-bottom: 100% !important; /* Change aspect ratio on mobile */
-      }
-    }
-    @media (max-width: 414px) {
-      #solitaire_embed > div {
-        padding-bottom: 120% !important; /* Change aspect ratio on mobile */
-      }
-    }
-  </style>
-  <div style="position:relative;padding-bottom:75%;border-radius:6px;overflow:hidden;">
-    <iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;border:0px;" frameBorder="0" width="100%" height="100%" allowFullScreen="false" src="https://online-solitaire.com/phee8wussc" title="Play Klondike (Turn 3) and many more Solitaire games at online-solitaire.com"></iframe>
-    <div style="position:absolute;width:100%;height:100%;top:0px;left:0px;pointer-events:none;box-shadow:inset 0px 0px 0px 1px rgba(0,0,0,0.25);border-radius:6px;"></div>
-  </div>
-  <p style="font-size:0px;line-height:40px;width:100%;text-align:center;margin:0px;">
-    If you like <a href="https://online-solitaire.com/">Solitaire</a>, try out <a href="https://online-solitaire.com/spider-solitaire">Spider Solitaire</a> or <a href="https://online-solitaire.com/freecell">Freecell</a>!
-  </p>
+<iframe src="battleships.html" frameborder="0" style="width:62em;height:30em;"></iframe>
 </div>
 
 </div>

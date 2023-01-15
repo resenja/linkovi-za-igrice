@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/battleshipsStyle.css">
+    <script src="supabase-js"></script>
+    <script>const client = supabase.createClient('https://qrpjxxnyavsvmdbypowt.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFycGp4eG55YXZzdm1kYnlwb3d0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzI1ODY5NjAsImV4cCI6MTk4ODE2Mjk2MH0.XAG8M4YLwVpGdA5H0qLa_SgFuUNuR9rldwe94DuPf3o');</script>
+    <title>Document</title>
+</head>
+<body>
+<div style="height:2em;"></div>
+    <div id="battleships-game" style="position:relative;">
+    <div id="battleships-board">
+    </div>
+    <div class="boat" onmousedown="startDragging(this,event)" onclick="rotate(event)" ondragstart="return false" style="width:8em;height:2em;top:0.5em;left:1em;z-index:10;"></div>
+    <div class="boat" onmousedown="startDragging(this,event)" onclick="rotate(event)" ondragstart="return false" style="width:6em;height:2em;top:3.5em;left:1em;z-index:10;"></div>
+    <div class="boat" onmousedown="startDragging(this,event)" onclick="rotate(event)" ondragstart="return false" style="width:6em;height:2em;top:3.5em;left:8em;z-index:10;"></div>
+    <div class="boat" onmousedown="startDragging(this,event)" onclick="rotate(event)" ondragstart="return false" style="width:4em;height:2em;top:6.5em;left:1em;z-index:10;"></div>
+    <div class="boat" onmousedown="startDragging(this,event)" onclick="rotate(event)" ondragstart="return false" style="width:4em;height:2em;top:6.5em;left:6em;z-index:10;"></div>
+    <div class="boat" onmousedown="startDragging(this,event)" onclick="rotate(event)" ondragstart="return false" style="width:4em;height:2em;top:6.5em;left:11em;z-index:10;"></div>
+    <div class="boat" onmousedown="startDragging(this,event)" ondragstart="return false" style="width:2em;height:2em;top:9.5em;left:1em;z-index:10;"></div>
+    <div class="boat" onmousedown="startDragging(this,event)" ondragstart="return false" style="width:2em;height:2em;top:9.5em;left:4em;z-index:10;"></div>
+    <div class="boat" onmousedown="startDragging(this,event)" ondragstart="return false" style="width:2em;height:2em;top:9.5em;left:7em;z-index:10;"></div>
+    <div class="boat" onmousedown="startDragging(this,event)" ondragstart="return false" style="width:2em;height:2em;top:9.5em;left:10em;z-index:10;"></div>
+    <div id="opponent-board"></div>
+    <div class="cover" id="my-cover" draggable="false"></div>
+    <div class="cover" id="opponent-cover" draggable="false"></div>
+    <div class="small-boat-div" style="left:8.5em;">
+        <div class="small-boat b4 personal" style="width:4em;height:1em;"></div>
+        <div class="small-boat b3 personal" style="width:3em;height:1em;top:1.25em;"></div>
+        <div class="small-boat b3 personal" style="width:3em;height:1em;top:1.25em;left:3.25em;"></div>
+        <div class="small-boat b2 personal" style="width:2em;height:1em;top:2.5em;"></div>
+        <div class="small-boat b2 personal" style="width:2em;height:1em;top:2.5em;left:2.25em;"></div>
+        <div class="small-boat b2 personal" style="width:2em;height:1em;top:2.5em;left:4.5em;"></div>
+        <div class="small-boat b1 personal" style="width:1em;height:1em;top:3.75em;"></div>
+        <div class="small-boat b1 personal" style="width:1em;height:1em;top:3.75em;left:1.25em;"></div>
+        <div class="small-boat b1 personal" style="width:1em;height:1em;top:3.75em;left:2.5em;"></div>
+        <div class="small-boat b1 personal" style="width:1em;height:1em;top:3.75em;left:3.75em;"></div>
+    </div>
+    <div class="small-boat-div" style="left:61.25em;">
+        <div class="small-boat b4 opponent" style="width:4em;height:1em;"></div>
+        <div class="small-boat b3 opponent" style="width:3em;height:1em;top:1.25em;"></div>
+        <div class="small-boat b3 opponent" style="width:3em;height:1em;top:1.25em;left:3.25em;"></div>
+        <div class="small-boat b2 opponent" style="width:2em;height:1em;top:2.5em;"></div>
+        <div class="small-boat b2 opponent" style="width:2em;height:1em;top:2.5em;left:2.25em;"></div>
+        <div class="small-boat b2 opponent" style="width:2em;height:1em;top:2.5em;left:4.5em;"></div>
+        <div class="small-boat b1 opponent" style="width:1em;height:1em;top:3.75em;"></div>
+        <div class="small-boat b1 opponent" style="width:1em;height:1em;top:3.75em;left:1.25em;"></div>
+        <div class="small-boat b1 opponent" style="width:1em;height:1em;top:3.75em;left:2.5em;"></div>
+        <div class="small-boat b1 opponent" style="width:1em;height:1em;top:3.75em;left:3.75em;"></div>
+    </div>
+    <div id="battleships-menu">
+        <div id="battleships-top-menu">
+            <div style="position:absolute;background-color:rgba(255,255,255,0.5);display:contents;">dostupne igre:</div>
+            <div id="available-games"></div>
+        </div>
+        <div id="battleships-bottom-menu">
+            <input type="text" placeholder="naziv partije" id="game-name" style="margin:5px;">
+            <button id="create-game" style="margin:5px;">napravi partiju</button>
+        </div>
+    </div>
+    <div id="game-over-screen" style="z-index: -10;">
+        <button onclick="goBack()">nazad</button>
+    </div>
+    <button id="random-placement" onclick="randomPlacement()" style="position:absolute;top:26em;left:19em;">random</button>
+    <button id="hide-personal-board-button" onclick="hidePersonalBoard()" style="position:absolute;top:-3em;left:19em;">sakrij moj ekran</button>
+</div>
+    <script src="js/battleshipsApp.js"></script>
+</body>
+</html>
