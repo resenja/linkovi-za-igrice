@@ -1,0 +1,179 @@
+#battleships-board{
+    display: grid;
+grid-template-columns: repeat(10, 1fr);
+position: absolute;
+border-bottom:solid 1px #bdbdff;
+padding-left:1px;
+margin-left: 15.5em;
+background-color: white;
+}
+#opponent-board{
+    display: grid;
+grid-template-columns: repeat(10, 1fr);
+position: absolute;
+border-bottom:solid 1px #bdbdff;
+padding-left:1px;
+margin-left: 40em;
+background-color: white;
+}
+.cell{
+    position:relative;
+    width: 2em;
+    height: 2em;
+    border-top:solid 1px #bdbdff;
+    border-left:solid 1px #bdbdff;
+    border-right:solid 1px #bdbdff;
+    margin-left:-1px;
+    background-color:white;
+}
+#opponent-board:not(.disableElement) .cell:not(.hit, .miss, .discover):hover{
+    outline: solid 2px green;
+    background-color:rgba(0,200,0,0.2);
+    border-top:rgba(0,200,0,0.2) 1px;
+    border-left:rgba(0,200,0,0.2) 1px;
+    border-right:rgba(0,200,0,0.2) 1px;
+    margin-left:0;
+    z-index: 1;
+    cursor:pointer;
+}
+.hit{
+    background: 
+    linear-gradient(to top left,
+        rgba(255, 0, 0, 0) 0%,
+        rgba(255, 0, 0, 0) calc(50% - 0.8px),
+        rgb(255,0,0) 50%,
+        rgba(255, 0, 0, 0) calc(50% + 0.8px),
+        rgba(255, 0, 0, 0) 100%),
+    linear-gradient(to top right,
+        rgba(255, 0, 0, 0) 0%,
+        rgba(255, 0, 0, 0) calc(50% - 0.8px),
+        rgb(255,0,0) 50%,
+        rgba(255, 0, 0, 0) calc(50% + 0.8px),
+        rgba(255, 0, 0, 0) 100%);
+}
+.hit.sunk{
+    background: 
+    linear-gradient(to top right,
+        rgba(255, 0, 0, 0) 0%,
+        rgba(255, 0, 0, 0) calc(50% - 0.8px),
+        rgb(255,0,0) 50%,
+        rgba(255, 0, 0, 0) calc(50% + 0.8px),
+        rgba(255, 0, 0, 0) 100%),
+    linear-gradient(to top left,
+        rgba(255, 0, 0, 0) 0%,
+        rgba(255, 0, 0, 0) calc(50% - 0.8px),
+        rgb(255,0,0) 50%,
+        rgba(255, 0, 0, 0) calc(50% + 0.8px),
+        rgba(255, 0, 0, 0) 100%),
+        linear-gradient(0deg, rgb(255,0,0) 1px, transparent 0px),
+        linear-gradient(90deg, rgb(255,0,0) 1px, transparent 0px),
+        linear-gradient(180deg, rgb(255,0,0) 1px, transparent 0px),
+        linear-gradient(270deg, rgb(255,0,0) 1px, transparent 0px);
+}
+.sunk.small-boat{
+    background-color:#ffaeae;
+}
+.miss span , .discover span{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 4px;
+    width: 4px;
+    border-radius: 50%;
+    margin-top: -2px;
+    margin-left: -2px;
+    z-index: 10;
+}
+.cell.miss span{
+    background-color: black;
+}
+.cell.discover span{
+    background-color: gray;
+}
+.miss , .discover{
+    background-color: #f2f4f8;
+}
+.cell.latest{
+    background-color:beige;
+}
+.boat{
+    position: absolute;
+    outline: solid 4px blue;
+    background-color:rgba(0,0,200,0.2);
+    margin-left:-0.5em;
+    cursor:move;
+}
+.small-boat{
+    position: absolute;
+    background-color:rgba(0,0,200,0.2);
+}
+.small-boat-div{
+    position:relative;
+    display:none;
+}
+.boat.dragged{
+    outline: solid 4px green;
+    background-color:rgba(0,200,0,0.2);
+}
+.cover{
+    position: absolute;
+    width: calc(20.5em + 11px);
+    height: calc(20.5em + 11px);
+    margin-top: -0.25em;
+}
+#my-cover{
+    margin-left: 15.25em;
+    z-index: -10;
+    background-color: rgba(255,255,255,0);
+}
+#opponent-cover{
+    margin-left: 40em;
+    z-index: 10;
+    background-color: rgba(255,255,255,0.5);
+}
+#game-over-screen{
+    position: absolute;
+    top:0;
+    left:0;
+    width: calc(20em + 11px);
+    height: calc(20em + 11px);
+    margin-left: 40em;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255,255,255,0.5);
+    z-index: 100;
+}
+#battleships-menu{
+    position: absolute;
+    top:0;
+    left:0;
+    width: calc(20em + 11px);
+    height: calc(20em + 11px);
+    margin-left: 40em;
+    z-index: 100;
+}
+#battleships-top-menu{
+    text-align:center;
+    width:100%;
+    height:90%;
+}
+#available-games{
+    overflow:auto;
+}
+#battleships-bottom-menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    height:10%;    
+}
+.game-request{
+    height: 30px;
+    width: 80px;
+    margin: 2.5px;
+}
+.hide-personal-board{
+    z-index: 100 !important;
+    background-color: white !important;
+}
