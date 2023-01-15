@@ -39,7 +39,6 @@ client
   .channel('public:messages')
   .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages', filter: `page=eq.${pageNumber}`, }, message => {
 addMessageToPage(message.new);
-addNumberOfAnswers();
   })
   .subscribe();
 async function send(){
